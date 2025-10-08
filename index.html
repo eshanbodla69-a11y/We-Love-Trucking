@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>We Love Trucking — AI Dispatching. Reimagined.</title>
+  <meta name="description" content="We Love Trucking — AI dispatcher for truckers. Auto-book loads, optimize routes, handle emails and e-signatures." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#ff7a18; /* neon orange */
+      --bg:#071029;
+      --muted:#8b98a8;
+      --glass: rgba(255,255,255,0.06);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:#fff}
+    /* Video background */
+    .hero-wrap{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .bg-video{position:absolute;inset:0;z-index:0}
+    .bg-video video{width:100%;height:100%;object-fit:cover}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,16,41,0.45), rgba(7,16,41,0.75));z-index:1}
+
+    /* Header */
+    header{position:absolute;top:18px;left:22px;right:22px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo img{height:48px;width:auto}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+    /* Hero content */
+    .hero-content{position:relative;z-index:2;text-align:center;max-width:1100px;padding:2rem}
+    h1{font-size:clamp(28px,4vw,56px);margin:0 0 12px;line-height:1.02;font-weight:800}
+    p.lead{color:var(--muted);font-size:18px;margin:0 0 22px}
+    .cta{display:inline-flex;gap:12px}
+    .btn{background:linear-gradient(90deg,var(--accent),#ffb36b);border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--muted);font-weight:600}
+
+    /* How it works & features */
+    section{padding:60px 20px;background:linear-gradient(180deg,rgba(7,16,41,0.98),#02050a)}
+    .container{max-width:1100px;margin:0 auto}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--glass);padding:18px;border-radius:12px;backdrop-filter: blur(6px)}
+    .card h3{margin:0 0 8px}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+
+    /* Map placeholder */
+    #map{height:380px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);overflow:hidden}
+
+    footer{padding:22px;text-align:center;color:var(--muted)}
+
+    /* Responsive tweaks */
+    @media(min-width:900px){header{padding:0 40px} .hero-content{text-align:left;padding-left:48px}}
+  </style>
+</head>
+<body>
+
+  <div class="hero-wrap">
+    <!-- Video background: replace assets/hero.mp4 with your 4K/1080p compressed mp4. For an 8K source, create a compressed web version for web delivery. -->
+    <div class="bg-video">
+      <video id="heroVideo" autoplay muted playsinline loop poster="assets/hero.jpg">
+        <source src="assets/hero.mp4" type="video/mp4">
+        <!-- If user's browser doesn't support video, fallback to poster image. -->
+      </video>
+    </div>
+    <div class="overlay" aria-hidden="true"></div>
+
+    <header>
+      <div class="logo">
+        <!-- Replace assets/logo.png with your logo file (transparent PNG preferred) -->
+        <img src="assets/logo.png" alt="We Love Trucking logo" id="logo">
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#map-demo">Map demo</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="hero-content">
+      <h1>AI Dispatching. Reimagined.</h1>
+      <p class="lead">We Love Trucking automates load booking, route planning, broker communication, and e-signatures — so drivers focus on the road and your fleet runs smarter.</p>
+      <div class="cta">
+        <button class="btn" id="startDemo">Get started — demo</button>
+        <button class="btn ghost" id="requestDemo">Request demo</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="how" class="container">
+    <h2 style="text-align:center;margin-top:0">How it works — 3 simple steps</h2>
+    <div class="steps" style="margin-top:18px">
+      <div class="card">
+        <h3>1. Auto-book loads</h3>
+        <p class="lead">The AI scans loadboards & broker feeds and books matching loads automatically based on your preferences.</p>
+      </div>
+      <div class="card">
+        <h3>2. Smart routing</h3>
+        <p class="lead">Google Maps directions + truck-specific rules (height, weight, hazmat) give drivers the safest and most profitable route.</p>
+      </div>
+      <div class="card">
+        <h3>3. Paperwork & signatures</h3>
+        <p class="lead">AI prepares rate confirmations, BOLs and initiates e-sign workflows — everything stored in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="container">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card"><h3>AI Dispatch Engine</h3><p class="lead">Auto-match loads and optimize profit per mile.</p></div>
+      <div class="card"><h3>Route Optimization</h3><p class="lead">Truck-legal routes, fuel stops and ETA accuracy.</p></div>
+      <div class="card"><h3>AI-driven Emails</h3><p class="lead">Auto-compose and send broker communications. Track responses.</p></div>
+      <div class="card"><h3>E-sign & Docs</h3><p class="lead">Integrated e-sign workflows for instant confirmations.</p></div>
+    </div>
+  </section>
+
+  <section id="map-demo" class="container">
+    <h2>Map demo (replace with live Google Maps integration)</h2>
+    <p class="lead">This is a placeholder map area. To show routes and directions, integrate Google Maps JS API and replace this section with an interactive map.</p>
+    <div id="map">Map placeholder — add Google Maps API key and code below (see instructions in comments).</div>
+  </section>
+
+  <section id="contact" class="container">
