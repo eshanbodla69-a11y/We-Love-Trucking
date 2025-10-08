@@ -11,153 +11,199 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   
   <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif;}
-    body, html {height:100%; scroll-behavior:smooth;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+    body,html{height:100%;scroll-behavior:smooth;color:#333;background:#f0f0f0;}
 
-    /* Hero section */
-    .hero {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
+    /* Header */
+    header{
+      position:fixed;top:0;width:100%;background:rgba(20,20,20,0.9);
+      color:white;padding:15px 10%;display:flex;justify-content:space-between;align-items:center;z-index:999;
+      font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,0.2);
     }
-    .hero video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
-      animation: fadeIn 3s ease forwards;
-    }
+    header h1{font-size:1.8rem;}
+    header nav a{color:white;text-decoration:none;margin-left:20px;font-weight:500;transition:0.3s;}
+    header nav a:hover{color:#ff8c00;}
 
-    @keyframes fadeIn {
-      0% {opacity:0; transform: translateY(20px);}
-      100% {opacity:1; transform: translateY(0);}
-    }
+    /* Hero */
+    .hero{position:relative;height:100vh;width:100%;display:flex;align-items:center;justify-content:center;text-align:center;}
+    .hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(0.6);}
+    .hero-content{color:white;max-width:800px;animation:fadeIn 2s ease forwards;}
+    .hero-content h1{font-size:3rem;margin-bottom:20px;text-shadow:2px 2px 15px rgba(0,0,0,0.7);}
+    .hero-content p{font-size:1.2rem;margin-bottom:30px;}
+    .hero-content button{padding:15px 25px;font-size:1rem;border:none;border-radius:8px;background:#ff8c00;color:white;cursor:pointer;transition:0.3s;}
+    .hero-content button:hover{background:#ff7000;}
 
-    /* Services section */
-    .services {
-      padding: 60px 10%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      background: #f4f4f4;
-    }
-    .service-card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    }
-    .service-card h3 {margin-bottom: 10px; color:#333;}
-    .service-card p {color:#555;}
+    @keyframes fadeIn{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+
+    /* Services */
+    .services{padding:100px 10%;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+    .service-card{background:#222;color:white;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3);cursor:pointer;transition:0.3s;}
+    .service-card h3{margin-bottom:10px;font-size:1.4rem;color:#ff8c00;}
+    .service-card p{color:#ccc;}
+    .service-card:hover{transform:translateY(-10px);box-shadow:0 15px 35px rgba(0,0,0,0.5);}
+
+    /* Modal */
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:1000;}
+    .modal-content{background:white;padding:30px;border-radius:15px;max-width:600px;position:relative;text-align:left;}
+    .modal-content h2{margin-bottom:15px;color:#222;}
+    .modal-content p{margin-bottom:10px;color:#555;line-height:1.5;}
+    .close-btn{position:absolute;top:15px;right:20px;font-size:1.5rem;cursor:pointer;color:#222;font-weight:bold;}
 
     /* Map section */
-    .map-section {
-      padding: 60px 10%;
-      background: #fff;
-    }
-    #map {
-      width: 100%;
-      height: 500px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+    .map-section{padding:60px 10%;background:#fff;margin-top:50px;}
+    #map{width:100%;height:500px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+
+    /* Signup Section */
+    .signup{padding:80px 10%;background:#222;color:white;}
+    .signup h2{text-align:center;margin-bottom:40px;color:#ff8c00;}
+    .signup form{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+    .signup input, .signup select{padding:12px;border-radius:8px;border:none;font-size:1rem;}
+    .signup button{grid-column:1/-1;padding:15px;background:#ff8c00;color:white;font-size:1rem;border:none;border-radius:8px;cursor:pointer;transition:0.3s;}
+    .signup button:hover{background:#ff7000;}
 
     /* Footer */
-    footer {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
+    footer{background:#222;color:white;text-align:center;padding:25px;}
 
-    /* Responsive text */
-    @media(max-width:768px){
-      .hero h1 {font-size:2rem;}
-      .services {padding:40px 5%;}
-    }
+    /* Responsive */
+    @media(max-width:768px){.hero-content h1{font-size:2rem;}.hero-content p{font-size:1rem;}}
   </style>
 </head>
 <body>
+
+  <!-- Header -->
+  <header>
+    <h1>We Love Trucking</h1>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#map">Route Planner</a>
+      <a href="#signup">Sign Up</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <video autoplay muted loop playsinline>
       <source src="hero.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
-    <h1>AI-powered truck dispatching, managing loads, routes & emails</h1>
+    <div class="hero-content">
+      <h1>AI-powered truck dispatching, managing loads, routes & emails</h1>
+      <p>Revolutionizing the trucking industry with cutting-edge AI. Launching 17th December 2025!</p>
+      <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+    </div>
   </section>
 
   <!-- Services Section -->
-  <section class="services">
-    <div class="service-card">
+  <section id="services" class="services">
+    <div class="service-card" onclick="openModal('dispatch')">
       <h3>AI Dispatching</h3>
-      <p>Automated dispatching for professional truckers with AI-based load allocation.</p>
+      <p>Click to learn more</p>
     </div>
-    <div class="service-card">
+    <div class="service-card" onclick="openModal('route')">
       <h3>Route Optimization</h3>
-      <p>Plan the most efficient routes with truck size and weight considerations.</p>
+      <p>Click to learn more</p>
     </div>
-    <div class="service-card">
+    <div class="service-card" onclick="openModal('load')">
       <h3>Load Booking & Measurement</h3>
-      <p>Manage load assignments, calculations, and automated confirmations.</p>
+      <p>Click to learn more</p>
     </div>
-    <div class="service-card">
+    <div class="service-card" onclick="openModal('email')">
       <h3>Email & E-sign</h3>
-      <p>Send professional emails to brokers and handle e-signature documents.</p>
+      <p>Click to learn more</p>
     </div>
   </section>
 
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
   <!-- Map Section -->
-  <section class="map-section">
+  <section id="map-section" class="map-section">
     <h2>Route Planner</h2>
     <div id="map"></div>
   </section>
 
+  <!-- Signup Section -->
+  <section id="signup" class="signup">
+    <h2>Truckers Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" name="firstName" placeholder="First Name" required>
+      <input type="text" name="lastName" placeholder="Last Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="city" placeholder="City" required>
+      <input type="text" name="zip" placeholder="ZIP Code" required>
+      <input type="text" name="mcNumber" placeholder="MC Number" required>
+      <input type="text" name="usdod" placeholder="USDOT Number" required>
+      <select name="truckType" required>
+        <option value="">Select Truck Type</option>
+        <option value="Flatbed">Flatbed</option>
+        <option value="Dry Van">Dry Van</option>
+        <option value="Reefer">Reefer</option>
+        <option value="Tanker">Tanker</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="number" name="truckCount" placeholder="Number of Trucks" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </section>
+
   <!-- Footer -->
-  <footer>
+  <footer id="contact">
     Contact us: +1-551-579-4132 &nbsp;|&nbsp; &copy; 2025 We Love Trucking
   </footer>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Initialize map
-    var map = L.map('map').setView([31.5204, 74.3587], 6); // Center on Lahore
-
-    // Add OpenStreetMap tiles
+    // Leaflet Map
+    var map = L.map('map').setView([31.5204, 74.3587], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
     }).addTo(map);
+    L.marker([31.5204, 74.3587]).addTo(map).bindPopup('We Love Trucking HQ').openPopup();
+    var route = L.polyline([[31.5204,74.3587],[32.555,74.345],[33.6844,73.0479]], {color:'orange', weight:5}).addTo(map);
 
-    // Add HQ marker
-    L.marker([31.5204, 74.3587]).addTo(map)
-      .bindPopup('We Love Trucking HQ')
-      .openPopup();
+    // Modal content
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalText = document.getElementById('modal-text');
 
-    // Example route (can be extended)
-    var route = L.polyline([
-      [31.5204, 74.3587],  // Lahore
-      [32.555, 74.345],    // Example depot
-      [33.6844, 73.0479]   // Islamabad
-    ], {color:'orange', weight:5}).addTo(map);
+    function openModal(type){
+      if(type==='dispatch'){
+        modalTitle.innerText='AI Dispatching';
+        modalText.innerHTML='We automate truck dispatching with advanced AI. Real-time load allocation, driver notifications, and maximum efficiency. Launching 17th December!';
+      }
+      if(type==='route'){
+        modalTitle.innerText='Route Optimization';
+        modalText.innerHTML='Plan routes that consider truck size, traffic, and fuel efficiency. AI calculates the fastest, safest, and most cost-effective routes for every delivery.';
+      }
+      if(type==='load'){
+        modalTitle.innerText='Load Booking & Measurement';
+        modalText.innerHTML='Automatically book and assign loads. AI calculates load weight, dimensions, and optimizes delivery schedules for maximum efficiency.';
+      }
+      if(type==='email'){
+        modalTitle.innerText='Email & E-sign';
+        modalText.innerHTML='Send professional emails to brokers, manage e-signatures, and track confirmations automatically. Keep your paperwork digital and error-free.';
+      }
+      modal.style.display='flex';
+    }
+
+    function closeModal(){ modal.style.display='none'; }
+    window.onclick = function(e){ if(e.target==modal){closeModal();} }
+
+    // Signup form
+    const form = document.getElementById('signupForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thank you for signing up! We will contact you soon.');
+      form.reset();
+    });
   </script>
 </body>
 </html>
