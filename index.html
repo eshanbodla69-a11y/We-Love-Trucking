@@ -12,7 +12,7 @@
 
   <style>
     /* ==========================================
-       RESET & BASE
+       BASE & RESET
     ========================================== */
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
     html, body{height:100%;scroll-behavior:smooth;background:#f0f0f0;color:#333;}
@@ -78,13 +78,11 @@
       cursor:pointer;
       transition:0.3s;
     }
-    .hero-content button:hover{
-      background:#ff7000;
-    }
+    .hero-content button:hover{background:#ff7000;}
     @keyframes fadeIn{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
 
     /* ==========================================
-       SERVICES SECTION
+       SERVICES
     ========================================== */
     .services{
       padding:120px 10%;
@@ -156,7 +154,7 @@
     }
 
     /* ==========================================
-       MAP SECTION
+       MAP
     ========================================== */
     .map-section{
       padding:80px 10%;
@@ -170,7 +168,7 @@
     }
 
     /* ==========================================
-       SIGNUP SECTION
+       SIGNUP
     ========================================== */
     .signup{
       padding:80px 10%;
@@ -228,7 +226,7 @@
 </head>
 <body>
 
-  <!-- ================= HEADER ================= -->
+  <!-- ========== HEADER ========== -->
   <header>
     <h1>We Love Trucking</h1>
     <nav>
@@ -239,7 +237,7 @@
     </nav>
   </header>
 
-  <!-- ================= HERO VIDEO ================= -->
+  <!-- ========== HERO VIDEO ========== -->
   <section class="hero">
     <video autoplay muted loop playsinline>
       <source src="hero.mp4" type="video/mp4">
@@ -251,42 +249,42 @@
     </div>
   </section>
 
-  <!-- ================= SERVICES ================= -->
+  <!-- ========== SERVICES ========== -->
   <section id="services" class="services">
-    <div class="service-card" onclick="openModal('dispatch')">
+    <div class="service-card" data-type="dispatch">
       <h3>AI Dispatching</h3>
       <p>Click to learn how we automate dispatching with advanced AI.</p>
     </div>
-    <div class="service-card" onclick="openModal('route')">
+    <div class="service-card" data-type="route">
       <h3>Route Optimization</h3>
       <p>Click to learn how we calculate safest & fastest routes.</p>
     </div>
-    <div class="service-card" onclick="openModal('load')">
+    <div class="service-card" data-type="load">
       <h3>Load Booking & Measurement</h3>
       <p>Click to see how AI optimizes load management.</p>
     </div>
-    <div class="service-card" onclick="openModal('email')">
+    <div class="service-card" data-type="email">
       <h3>Email & E-sign</h3>
       <p>Click to see our AI-powered email & e-sign solutions.</p>
     </div>
   </section>
 
-  <!-- ================= MODAL ================= -->
+  <!-- ========== MODAL ========== -->
   <div id="modal" class="modal">
     <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <span class="close-btn">&times;</span>
       <h2 id="modal-title"></h2>
       <p id="modal-text"></p>
     </div>
   </div>
 
-  <!-- ================= MAP ================= -->
+  <!-- ========== MAP ========== -->
   <section id="map-section" class="map-section">
     <h2>Route Planner</h2>
     <div id="map"></div>
   </section>
 
-  <!-- ================= SIGNUP ================= -->
+  <!-- ========== SIGNUP ========== -->
   <section id="signup" class="signup">
     <h2>Truckers Sign Up</h2>
     <form id="signupForm">
@@ -310,42 +308,51 @@
     </form>
   </section>
 
-  <!-- ================= FOOTER ================= -->
+  <!-- ========== FOOTER ========== -->
   <footer id="contact">
     Contact us: +1-551-579-4132 &nbsp;|&nbsp; &copy; 2025 We Love Trucking
   </footer>
 
-  <!-- ================= SCRIPTS ================= -->
+  <!-- ========== SCRIPTS ========== -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // ================= LEAFLET MAP =================
-    const map = L.map('map').setView([31.5204,74.3587], 6);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-      maxZoom:19,
-      attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    L.marker([31.5204,74.3587]).addTo(map).bindPopup('We Love Trucking HQ').openPopup();
-    L.polyline([[31.5204,74.3587],[32.555,74.345],[33.6844,73.0479]],{color:'orange',weight:5}).addTo(map);
+    document.addEventListener("DOMContentLoaded", function() {
+      // ===== LEAFLET MAP =====
+      const map = L.map('map').setView([31.5204,74.3587], 6);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        maxZoom:19,
+        attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      L.marker([31.5204,74.3587]).addTo(map).bindPopup('We Love Trucking HQ').openPopup();
+      L.polyline([[31.5204,74.3587],[32.555,74.345],[33.6844,73.0479]],{color:'orange',weight:5}).addTo(map);
 
-    // ================= MODAL =================
-    const modal = document.getElementById('modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalText = document.getElementById('modal-text');
-    function openModal(type){
-      if(type==='dispatch'){modalTitle.innerText='AI Dispatching'; modalText.innerHTML='Our AI dispatch system automatically assigns loads, calculates routes, and optimizes schedules to save truckers time & money.';}
-      if(type==='route'){modalTitle.innerText='Route Optimization'; modalText.innerHTML='We calculate the fastest, safest, and most fuel-efficient routes using AI algorithms integrated with OpenStreetMap.';}
-      if(type==='load'){modalTitle.innerText='Load Booking & Measurement'; modalText.innerHTML='AI assists in booking loads, measuring capacity, and optimizing load assignments to reduce empty miles.';}
-      if(type==='email'){modalTitle.innerText='Email & E-sign'; modalText.innerHTML='Our AI writes professional emails to brokers, sends contracts, and manages e-signatures seamlessly.';}
-      modal.style.display='flex';
-    }
-    function closeModal(){modal.style.display='none';}
+      // ===== MODAL =====
+      const modal = document.getElementById('modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalText = document.getElementById('modal-text');
+      const closeBtn = document.querySelector('.close-btn');
 
-    // ================= SIGNUP FORM =================
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit',function(e){
-      e.preventDefault();
-      alert('Thank you for signing up! Our team will contact you soon.');
-      signupForm.reset();
+      function openModal(type){
+        if(type==='dispatch'){modalTitle.innerText='AI Dispatching'; modalText.innerHTML='Our AI dispatch system automatically assigns loads, calculates routes, and optimizes schedules to save truckers time & money.';}
+        if(type==='route'){modalTitle.innerText='Route Optimization'; modalText.innerHTML='We calculate the fastest, safest, and most fuel-efficient routes using AI algorithms integrated with OpenStreetMap.';}
+        if(type==='load'){modalTitle.innerText='Load Booking & Measurement'; modalText.innerHTML='AI assists in booking loads, measuring capacity, and optimizing load assignments to reduce empty miles.';}
+        if(type==='email'){modalTitle.innerText='Email & E-sign'; modalText.innerHTML='Our AI writes professional emails to brokers, sends contracts, and manages e-signatures seamlessly.';}
+        modal.style.display='flex';
+      }
+
+      document.querySelectorAll('.service-card').forEach(card=>{
+        card.addEventListener('click',()=>openModal(card.dataset.type));
+      });
+      closeBtn.addEventListener('click',()=>modal.style.display='none');
+      window.addEventListener('click',e=>{if(e.target===modal) modal.style.display='none';});
+
+      // ===== SIGNUP FORM =====
+      const signupForm = document.getElementById('signupForm');
+      signupForm.addEventListener('submit',function(e){
+        e.preventDefault();
+        alert('Thank you for signing up! Our team will contact you soon.');
+        signupForm.reset();
+      });
     });
   </script>
 </body>
